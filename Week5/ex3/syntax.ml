@@ -1,4 +1,4 @@
-type name = string 
+type name = string
 
 type value =
   | VInt  of int
@@ -37,17 +37,38 @@ let print_value v =
 let rec print_expr e =
   match e with
   | EConstInt i ->
-     print_int i
+    	(
+	print_string "Int ";
+	 print_int i
+	)
   | EConstBool b ->
      print_string (string_of_bool b)
-  | EVar x -> 
-     print_name x
+  | EVar x ->
+	(
+	print_string "Var "; 
+     	print_name x
+	)
+  | ELet (x, e1, e2) ->
+	(
+	print_string "Let";
+	print_newline();
+	print_name x;
+	print_newline();
+	print_string "Eq";
+	print_newline();
+	print_expr e1;
+	print_newline();
+	print_string "In";
+	print_expr e2;
+	)
   | EAdd (e1,e2) -> 
-     (print_string "EAdd (";
+     (
+      print_string "Add";
+      print_newline();
       print_expr e1;
-      print_string ",";
+      print_newline();
       print_expr e2;
-      print_string ")")
+     )
   | ESub (e1,e2) -> 
      (print_string "ESub (";
       print_expr e1;
@@ -90,3 +111,13 @@ let rec print_expr e =
 let rec print_command p =       
   match p with
   | CExp e -> print_expr e
+  | CDecl (x,e) -> 
+	(
+	print_string "Let";
+	print_newline();
+	print_name x;
+        print_newline();
+        print_string "Eq";
+        print_newline();
+        print_expr e;
+	) 

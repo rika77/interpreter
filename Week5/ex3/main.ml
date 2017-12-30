@@ -6,10 +6,16 @@ let rec read_eval_print env =
   flush stdout;
   let cmd = Parser.toplevel Lexer.main (Lexing.from_channel stdin) in
   let (id, newenv, v) = eval_command env cmd in
-  (Printf.printf "%s = " id;
+  (
+   try
+	print_command cmd;
+   print_newline ();
+   Printf.printf "%s = " id;
    print_value v;
    print_newline ();
-   read_eval_print newenv)
+   read_eval_print newenv
+   with	| Parsing.Parse_error ->
+	  print_endline "Parse Error!")
 
 let initial_env =
   extend "i" (VInt 1)

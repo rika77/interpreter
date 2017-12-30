@@ -3,12 +3,13 @@ let space = ' ' | '\t' | '\r' | '\n'
 let alpha = ['a'-'z' 'A'-'Z' '_' ] 
 let ident = alpha (alpha | digit)* 
 
+(* new! let, in, *)
 rule main = parse
 | space+       { main lexbuf }
 | "+"          { Parser.PLUS }
-| "*"          { Parser.TIMES }
 | "-"          { Parser.MINUS }
-| "/"          { Parser.DIV }
+| "*"          { Parser.TIMES }
+| "/"	       { Parser.DIV }
 | "="          { Parser.EQ }
 | "<"          { Parser.LT }
 | "let"        { Parser.LET }
