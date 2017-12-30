@@ -59,6 +59,7 @@ let rec print_expr e =
 	print_expr e1;
 	print_newline();
 	print_string "In";
+	print_newline();
 	print_expr e2;
 	)
   | EAdd (e1,e2) -> 

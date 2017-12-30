@@ -65,6 +65,10 @@ let rec eval_expr env e =
      | VBool b ->
        if b then eval_expr env e2 else eval_expr env e3
      | _ -> raise EvalErr)
+  | ELet (x,e1,e2) ->
+    let v1 = eval_expr env e1 in
+    let new_env = extend x v1 env in
+    eval_expr new_env e2
 
 let rec eval_command env c =
   match c with
