@@ -32,17 +32,19 @@ let print_value v =
 let rec print_expr e =
   match e with
   | EConstInt i ->
-     print_int i
+	(print_string "Int ";
+     print_int i;)
   | EConstBool b ->
      print_string (string_of_bool b)
   | EVar x -> 
      print_name x
   | EAdd (e1,e2) -> 
-     (print_string "EAdd (";
+     (	print_string "Add";
+	print_newline();
       print_expr e1;
-      print_string ",";
+      print_newline();
       print_expr e2;
-      print_string ")")
+     )
   | EEq (e1,e2) ->
      (print_string "EEq (";
       print_expr e1;
