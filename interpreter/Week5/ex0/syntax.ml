@@ -1,4 +1,4 @@
-type name = string 
+(* type name = string *) 
 
 type value =
   | VInt  of int
@@ -7,7 +7,7 @@ type value =
 type expr =
   | EConstInt  of int
   | EConstBool of bool
-  | EVar       of name 
+  | EVar       of string 
   | EAdd       of expr * expr
   | EEq        of expr * expr
   | ELt        of expr * expr		 
@@ -16,7 +16,7 @@ type expr =
 type command =
   | CExp of expr
 				  
-let print_name = print_string 
+(* let print_name = print_string *) 
 
 let print_value v =
   match v with
@@ -37,7 +37,7 @@ let rec print_expr e =
   | EConstBool b ->
      print_string (string_of_bool b)
   | EVar x -> 
-     print_name x
+     print_string x
   | EAdd (e1,e2) -> 
      (	print_string "Add";
 	print_newline();

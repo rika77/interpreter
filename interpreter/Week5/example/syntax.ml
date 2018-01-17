@@ -33,6 +33,8 @@ let rec print_expr e =
   match e with
   | EConstInt i ->
      print_int i
+  | x -> print_string "mahi"
+(*
   | EConstBool b ->
      print_string (string_of_bool b)
   | EVar x -> 
@@ -63,7 +65,7 @@ let rec print_expr e =
       print_string ",";
       print_expr   e3;
       print_string ")")
-
+*)
 let rec print_command p =       
   match p with
   | CExp e -> print_expr e

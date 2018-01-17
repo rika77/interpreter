@@ -3,7 +3,7 @@ open Syntax
 let main () =
   try 
     let lexbuf = Lexing.from_channel stdin in 
-    let result = Parser.toplevel Lexer.main lexbuf in
+    let result = Parser.toplevel Lexer.token lexbuf in
     print_command result; print_newline ()
   with 
     | Parsing.Parse_error -> 

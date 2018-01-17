@@ -1,7 +1,7 @@
 %{
   open Syntax
 %}
-
+/* type token = INT of int | PLUS...というノリ */
 %token <int>    INT
 %token <bool>   BOOL 
 %token <string> ID 
